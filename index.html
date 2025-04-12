@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProTyper - Typing Practice</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar">
+      <button
+        id="close-sidebar"
+        class="sidebar-toggle"
+        aria-label="Close sidebar"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="sidebar-header">
+        <h2>ProTyper</h2>
+        <!-- Optional: Add logo here -->
+        <!-- <img src="assets/logo.png" alt="ProTyper Logo" width="50"> -->
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-category">Lessons</li>
+        <li>
+          <a href="#" data-mode="lesson" data-lesson="home-row"
+            ><i class="fas fa-keyboard"></i> Home Row</a
+          >
+        </li>
+        <li>
+          <a href="#" data-mode="lesson" data-lesson="top-row"
+            ><i class="fas fa-keyboard"></i> Top Row</a
+          >
+        </li>
+        <li>
+          <a href="#" data-mode="lesson" data-lesson="bottom-row"
+            ><i class="fas fa-keyboard"></i> Bottom Row</a
+          >
+        </li>
+        <li>
+          <a href="#" data-mode="lesson" data-lesson="numbers"
+            ><i class="fas fa-hashtag"></i> Numbers</a
+          >
+        </li>
+        <li>
+          <a href="#" data-mode="lesson" data-lesson="symbols"
+            ><i class="fas fa-at"></i> Symbols</a
+          >
+        </li>
+
+        <li class="menu-category">Practice</li>
+        <li>
+          <a href="#" data-mode="practice" data-practice="letters"
+            ><i class="fas fa-font"></i> Letters</a
+          >
+        </li>
+        <li>
+          <a href="#" data-mode="practice" data-practice="words"
+            ><i class="fas fa-file-word"></i> Words</a
+          >
+        </li>
+        <li>
+          <a href="#" data-mode="practice" data-practice="paragraph"
+            ><i class="fas fa-paragraph"></i> Paragraph</a
+          >
+        </li>
+
+        <li class="menu-category">Game</li>
+        <li>
+          <a href="#" data-mode="game" data-game="falling-words"
+            ><i class="fas fa-gamepad"></i> Falling Words</a
+          >
+        </li>
+
+        <li class="menu-category">Tips</li>
+        <li>
+          <a href="#" data-mode="tips"
+            ><i class="fas fa-lightbulb"></i> Typing Tips</a
+          >
+        </li>
+
+        <!-- NEW: Settings Section -->
+        <li class="menu-category">Settings</li>
+        <li class="settings-item">
+          <label for="toggle-typing-sound">
+            <i class="fas fa-volume-up"></i> Typing Sound
+          </label>
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="toggle-typing-sound"
+              aria-label="Toggle typing sound"
+            />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <li class="settings-item">
+          <label for="toggle-error-sound">
+            <i class="fas fa-exclamation-triangle"></i> Error Sound
+          </label>
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="toggle-error-sound"
+              aria-label="Toggle error sound"
+            />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <li class="settings-item">
+          <label for="toggle-bg-music">
+            <i class="fas fa-music"></i> Background Music
+          </label>
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="toggle-bg-music"
+              aria-label="Toggle background music"
+            />
+            <span class="slider round"></span>
+          </label>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+      <button
+        id="open-sidebar"
+        class="sidebar-toggle"
+        aria-label="Open sidebar"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="container">
+        <h1 id="main-title">Welcome to ProTyper!</h1>
+        <p id="instructions">
+          Select a lesson or practice mode from the sidebar to begin.
+        </p>
+
+        <!-- Practice/Lesson Area - Elements rearranged -->
+        <div id="practice-section" class="content-section">
+          <!-- 1. Text area -->
+          <div id="text-display-wrapper">
+            <div id="text-to-type">
+              <!-- Text to type will appear here -->
+            </div>
+          </div>
+          <!-- Hidden input field to capture actual typing -->
+          <input
+            type="text"
+            id="hidden-input"
+            aria-label="Typing input area"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+
+          <!-- 2. Stats -->
+          <div id="stats">
+            <div class="stat-item">Time: <span id="time">0:00</span></div>
+            <div class="stat-item">WPM: <span id="wpm">0</span></div>
+            <div class="stat-item">
+              Accuracy: <span id="accuracy">100%</span>
+            </div>
+            <div class="stat-item">Errors: <span id="errors">0</span></div>
+          </div>
+
+          <!-- 3. Restart Button -->
+          <button id="restart-button" class="btn">
+            Restart <i class="fas fa-redo"></i>
+          </button>
+
+          <!-- 4. Keyboard -->
+          <div id="visual-keyboard">
+            <!-- Keyboard will be generated by JS -->
+          </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="game-section" class="content-section">
+          <h2>Falling Words Game</h2>
+          <div id="game-canvas">
+            <!-- Falling words will appear here -->
+          </div>
+          <input
+            type="text"
+            id="game-input"
+            placeholder="Type words here..."
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+          <div id="game-stats">
+            Score: <span id="score">0</span> | Lives: <span id="lives">5</span>
+          </div>
+          <button id="start-game-button" class="btn">Start Game</button>
+        </div>
+
+        <!-- Tips Area -->
+        <div id="tips-section" class="content-section">
+          <h2>Typing Tips</h2>
+          <ul>
+            <li>
+              <strong>Posture:</strong> Sit up straight, feet flat on the floor.
+              Keep wrists straight, not resting on the desk.
+            </li>
+            <li>
+              <strong>Home Row:</strong> Always return your fingers to the home
+              row keys (ASDF JKL;). Use the bumps on F and J keys to find them
+              without looking.
+            </li>
+            <li>
+              <strong>Finger Placement:</strong> Assign specific fingers to
+              specific keys and stick to it. (Visual keyboard guide helps!)
+            </li>
+            <li>
+              <strong>Accuracy over Speed:</strong> Focus on typing correctly
+              first. Speed will come naturally with practice.
+            </li>
+            <li>
+              <strong>Don't Look Down:</strong> Train yourself to keep your eyes
+              on the screen, not your hands.
+            </li>
+            <li>
+              <strong>Rhythm:</strong> Try to maintain a steady typing rhythm
+              rather than bursts of speed.
+            </li>
+            <li>
+              <strong>Practice Regularly:</strong> Consistent, short practice
+              sessions are more effective than infrequent long ones.
+            </li>
+            <li>
+              <strong>Take Breaks:</strong> Avoid strain by taking short breaks
+              during long typing sessions.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Overlay for sidebar on mobile -->
+    <div id="overlay"></div>
+
+    <!-- Audio Elements (Hidden) - Make sure you have these files in /assets/ -->
+    <audio id="keypress-sound" src="keypress.mp3" preload="auto"></audio>
+    <audio id="error-sound" src="error.mp3" preload="auto"></audio>
+    <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
